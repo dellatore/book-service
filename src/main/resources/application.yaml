@@ -23,3 +23,5 @@ resilience4j:
     instances:
       foo-bar:
         max-attempts: 3
+        wait-duration: 1s
+        enable-exponential-backoff: true
