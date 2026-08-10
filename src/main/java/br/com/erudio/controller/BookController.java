@@ -5,11 +5,14 @@ import br.com.erudio.model.Book;
 import br.com.erudio.model.dto.Exchange;
 import br.com.erudio.proxy.ExchangeProxy;
 import br.com.erudio.repository.BookRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Book Endpoint", description = "Operations about Book")
 @RestController
 @RequestMapping("/book-service")
 public class BookController {
@@ -50,6 +53,7 @@ public class BookController {
 //        return book;
 //    }
 
+    @Operation(summary = "Find book by ID")
     @GetMapping("{id}/{currency}")
     public Book findBook(@PathVariable Long id, @PathVariable String currency) {
         Book book = repository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
